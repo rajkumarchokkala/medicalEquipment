@@ -32,15 +32,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("role", response.role);
             localStorage.setItem("username", response.username);
             console.log(localStorage.getItem("role"));
-             this.router.navigateByUrl('dashboard');
-
-
-
-          
-
-
-
-
+            this.router.navigateByUrl('dashboard');
             this.snackBar.open('Login Successful!', '', {
               duration: 2000,
               verticalPosition: 'top',
@@ -49,7 +41,12 @@ export class LoginComponent implements OnInit {
           },
           error: (error) => {
             console.log(error);
-            alert("Invalid credentials");
+            this.snackBar.open('Invalid Credentials', '', {
+              duration: 3000,
+              verticalPosition: 'top',
+              panelClass: ['custom-snackbar']
+            });
+          
           }
         }
       );

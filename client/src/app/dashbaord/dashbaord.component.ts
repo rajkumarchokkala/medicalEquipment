@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
 import { ThisReceiver } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashbaord',
   templateUrl: './dashbaord.component.html',
   styleUrls: ['./dashbaord.component.scss']
 })
-export class DashbaordComponent {
+export class DashbaordComponent implements OnInit {
   
   hospitals:any=[];
   orderList:any=[];
@@ -26,14 +27,28 @@ export class DashbaordComponent {
 
   
 
-  constructor(private hs:HttpService , private as:AuthService)
+  constructor(private hs:HttpService , private as:AuthService,private rou:Router)
   {
+    
       this.role=localStorage.getItem('role');
       console.log(this.role);
       this.getHospital();
       this.getOrders();
       this.getMaintenance();   
       // this.onHospitalSelect(this.hospital); 
+     
+  }
+  ngOnInit(): void {
+    if (!sessionStorage.getItem('reloaded')) {
+      sessionStorage.setItem('reloaded', 'true');
+      window.location.reload();
+
+      
+      
+  } else {
+      sessionStorage.removeItem('reloaded');
+  }
+  
   }
 
 

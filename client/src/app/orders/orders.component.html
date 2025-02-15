@@ -1,86 +1,7 @@
 <!-- <h1>Manage Orders</h1>
-
 <div class="order-info">
   Order Information
 </div>
-
-
-
-<div *ngIf="orderList.length > 0">
-  <table>
-    <thead>
-      <tr>
-        <th>Order ID</th>
-        <th>Order Date</th>
-        <th>Status</th>
-        <th>Equipment</th>
-       
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of orderList">
-        <td>{{ order.id }}</td>
-        <td>{{ order.orderDate | date : 'short'}}</td>
-        <td>{{ order.status }}</td>
-        <td>
-          id:{{ order.equipment.id }} <br>
-          name:{{ order.equipment.name }}<br>
-          description:{{ order.equipment.description }}
-        </td>
-      
-        <td>
-          <button style="background-color: rgb(49, 49, 146); color: white;" (click)="update(order.id)">Update</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div *ngIf="orderList.length === 0">
-  No orders available.
-</div>
-
-<div *ngIf="showModal" class="custom-modal-overlay">
-  <div class="custom-modal">
-    <div class="custom-modal-header">
-      <h5 class="modal-title">Update Order Status</h5>
-      <button class="btn-close" (click)="cancelUpdate()">❌</button>
-    </div>
-    <div class="custom-modal-body">
-      <form [formGroup]="orderForm" (ngSubmit)="saveUpdate()">
-        <div class="form-group">
-          <label for="newStatus">Status:</label>
-          <select id="newStatus" formControlName="newStatus" [(ngModel)]="statusModel.newStatus" class="form-control">
-            <option value="Please choose" disabled>Please choose</option>
-            <option value="initiated">Initiated</option>
-            <option value="completed">Completed</option>
-          </select>
-        </div>
-        <div class="custom-modal-footer">
-          <button class="btn btn-success" type="submit">Save</button>
-          <button class="btn btn-secondary" type="button" (click)="cancelUpdate()">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="showMessage" class="alert alert-success mt-3">
-  {{ successMessage }}
-</div>
-
-<div *ngIf="showError" class="alert alert-danger mt-3">
-  {{ errorMessage }}
-</div> -->
-
-
-<h1>Manage Orders</h1>
-
-<div class="order-info">
-  Order Information
-</div>
-
 <div *ngIf="orderList.length > 0">
   <table>
     <thead>
@@ -144,4 +65,78 @@
 
 <div *ngIf="showError" class="alert alert-danger mt-3">
   {{ errorMessage }}
+</div> -->
+
+
+<div class="container mt-5">
+  <h1 class="text-center">Manage Orders</h1>
+  <div class="order-info bg-primary text-white p-3 mb-4">
+    Order Information
+  </div>
+  <div *ngIf="orderList.length > 0">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Order ID</th>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th>Hospital</th>
+          <th>Equipment</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orderList" [class.disabled]="order.status === 'Delivered'">
+          <td>{{ order.id }}</td>
+          <td>{{ order.orderDate | date : 'short' }}</td>
+          <td>{{ order.status }}</td>
+          <td>
+            <!-- ID: {{ order.equipment.hospital.id }} <br> -->
+            Name: {{ order.equipment.hospital.name }}<br>
+            Location: {{ order.equipment.hospital.location }}
+          </td>
+          <td>
+            ID: {{ order.equipment.id }} <br>
+            Name: {{ order.equipment.name }}<br>
+            Description: {{ order.equipment.description }}
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="update(order)" [disabled]="order.status === 'completed'">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="orderList.length === 0" class="alert alert-info">
+    No orders available.
+  </div>
+  <div *ngIf="showModal" class="custom-modal-overlay">
+    <div class="custom-modal">
+      <div class="custom-modal-header">
+        <h5 class="modal-title">Update Order Status</h5>
+        <button class="btn-close" (click)="cancelUpdate()">❌</button>
+      </div>
+      <div class="custom-modal-body">
+        <form [formGroup]="orderForm" (ngSubmit)="saveUpdate()">
+          <div class="form-group">
+            <label for="newStatus">Status:</label>
+            <select id="newStatus" formControlName="newStatus" [(ngModel)]="statusModel.newStatus" class="form-control">
+              <option value="" disabled>Please Choose Status</option>
+              <option *ngFor="let s of newStatus" [value]="s">{{s}}</option>
+            </select>
+          </div>
+          <div class="custom-modal-footer">
+            <button class="btn btn-success" type="submit">Save</button>
+            <button class="btn btn-secondary" type="button" (click)="cancelUpdate()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showMessage" class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="showError" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
 </div>

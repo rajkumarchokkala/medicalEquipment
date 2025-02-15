@@ -354,7 +354,7 @@ body {
 }
 
 .maintenance-box td {
-  color: white;
+  color: rgb(255, 255, 255);
   text-align: center;
   padding: 10px;
   border: 1px solid #ffffff;
@@ -362,4 +362,110 @@ body {
 
 .maintenance-box tr:first-child td {
   font-weight: bold;
+}
+
+
+
+.dashboard-statistic {
+  text-align: center;
+  padding: 20px;
+  background: #142195;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Full width */
+  max-width: none; /* Remove the max-width */
+  margin: 10px 0; /* Adjust margins if needed */
+}
+
+.dashboard-statistic h2 {
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.stat-count {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 900;
+  font-size: 36px;
+  color: #ffffff;
+  margin-top: 0;
+}
+
+
+
+.card-content p
+{
+  color: white;
+}
+
+.stats-box {
+  padding: 20px;
+}
+
+.maintenance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.maintenance-card {
+  background: linear-gradient(135deg, #3a1376, #3a1376); /* Blue gradient */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.maintenance-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-content h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.card-content p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+
+.stats-box {
+  padding: 20px;
+}
+
+.order-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.order-card {
+  background: linear-gradient(135deg, #4e79a7, #1f3d61); /* Blue gradient */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-content h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.card-content p {
+  font-size: 16px;
+  margin-bottom: 10px;
 }

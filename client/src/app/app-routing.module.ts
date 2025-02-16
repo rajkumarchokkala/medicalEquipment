@@ -13,6 +13,8 @@ import { ScheduleMaintenanceComponent } from './schedule-maintenance/schedule-ma
 import { RequestequipmentComponent } from './requestequipment/requestequipment.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { OrdersComponent } from './orders/orders.component';
+import { OrderStatusComponent } from './order-status/order-status.component';
+import { MaintenanceStatusComponent } from './maintenance-status/maintenance-status.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: 'requestequipment', component: RequestequipmentComponent },  
   { path: 'maintenance', component: MaintenanceComponent }, 
   {path: 'maintenance/:id', component: MaintenanceComponent }, 
-  { path: 'orders', component: OrdersComponent },  
+  { path: 'orders', component: OrdersComponent }, 
+  {path:'maintenance-status',component:MaintenanceStatusComponent},
+  {path:'order-status',component:OrderStatusComponent}, 
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
   { path: '**', redirectTo: '/dashboard', pathMatch: 'full' },

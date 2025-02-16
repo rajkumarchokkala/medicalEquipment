@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 
 import Aos from 'aos';
+import { Feedback } from '../model/feedback';
 
 @Component({
   selector: 'app-dashbaord',
@@ -31,24 +32,26 @@ export class DashbaordComponent implements OnInit {
   inititedCount: number = 0;
   pendingList: any[] = [];
   pendingMaintanance:any[]=[];
+  feedbackList:Feedback[]=[];
 
 
 
-  constructor(private hs: HttpService, private as: AuthService, private rou: Router) {
-
+  constructor(private hs: HttpService, private as: AuthService, private rou: Router) 
+  {
     this.role = localStorage.getItem('role');
-
     console.log(this.role);
     this.getHospital();
     this.getOrders();
-    this.getMaintenance();
+    // this.getMaintenance();
     // this.onHospitalSelect(this.hospital); 
 
   }
-  ngOnInit(): void {
-    this.getPending();
-this.getMaintenance();
+  ngOnInit(): void 
+  { 
+    this.getMaintenance();
+    this.getAllFeedbacks();
     console.log(this.pendingList);
+    console.log(this.pendingMaintanance);
 
     Aos.init({
       duration: 1200, // Animation duration
@@ -59,13 +62,21 @@ this.getMaintenance();
     if (!sessionStorage.getItem('reloaded')) {
       sessionStorage.setItem('reloaded', 'true');
       window.location.reload();
-
-
-
-    } else {
+    } 
+    else 
+    {
       sessionStorage.removeItem('reloaded');
     }
 
+  }
+
+  getHospital() {
+    this.hs.getHospital().subscribe((data) => {
+      this.hospitals = data;
+      this.hospitalCount = this.hospitals.length;
+
+      console.log(this.hospitalCount);
+    });
   }
 
 
@@ -75,72 +86,38 @@ this.getMaintenance();
         this.orderList = data;
         console.log("order list",this.orderList);
         this.orderCount = this.orderList.length;
-        this.pendingList = this.orderList.filter((val: any) => {
-          return val.status === 'Initiated';
+        this.pendingList = this.orderList.filter((val: any) => 
+        {
+        return val.status === 'Initiated';
         })
         console.log('pending list',this.pendingList);
       },
-
     );
   }
 
-
-  getPending() {
-
-    
-  }
-
-
-
-  getHospital() {
-    this.hs.getHospital().subscribe((data) => {
-      this.hospitals = data;
-      this.hospitalCount = this.hospitals.length;
-
-      console.log(this.hospitalCount);
-      // this.onHospitalSelect(2);
-    });
-  }
-
-
-  // onHospitalSelect(hospital:any)
-  // {
-  //   this.equipmentId=hospital.id;
-  //   this.hs.getEquipmentById(this.equipmentId).subscribe((data) =>
-  //   {
-  //     console.log(data);
-  //     this.equipmentList = data;
-  //     this.equipmentCount = this.equipmentList.length;
-  //     console.log(this.equipmentCount);
-  //   });   
-  // }
-
-
-  // onHospitalSelect(hospital: any) {
-  //   this.equipmentId = hospital.id;
-  //   this.hs.getEquipmentById(this.equipmentId).subscribe((data) => {
-  //     console.log(data);
-  //     this.selectedHospitalEquipment = data;
-  //     this.equipmentCount = this.selectedHospitalEquipment.length;
-  //     console.log(this.equipmentCount);
-  //   });
-  // }
-
-
-  getMaintenance() {
-    this.maintenanceList = this.hs.getMaintenance().subscribe((data) => {
+  getMaintenance() 
+  {
+    this.hs.getMaintenance().subscribe((data) => 
+      {
       console.log(data);
-      
       this.maintenanceList = data;
       console.log(this.maintenanceList);
-      
       this.maintenanceListCount = this.maintenanceList.length;
       this.pendingMaintanance = this.maintenanceList.filter((val:any)=>
       {
-        return val.status === 'Pending';
+        return val.status === 'Completed';
       })
     })
     console.log("pending list",this.pendingMaintanance);
+  }
+
+
+  getAllFeedbacks()
+  {
+    this.hs.getAllFeedbacks().subscribe((data)=>
+    {
+      this.feedbackList=data;
+    })
   }
 
 }

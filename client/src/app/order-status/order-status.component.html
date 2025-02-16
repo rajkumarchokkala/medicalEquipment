@@ -1,0 +1,102 @@
+<div class="container mt-4">
+    <table class="table table-hover table-bordered text-center shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Order ID</th>
+                <th>Hospital Name</th>
+                <th>Equipment</th>
+                <th>Status</th>
+                <th>Feedback</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of orderList" class="align-middle">
+                <td>{{m.id}}</td>
+                <td>{{m.equipment.hospital.name}}</td>
+                <td>{{m.equipment.name}}</td>
+                <td>
+                    <span [class.badge-success]="m.status === 'Delivered'"
+                        [class.badge-warning]="m.status === 'Initiated'" [class.badge-danger]="m.status === 'Ordered'"
+                        class="badge">
+                        {{ m.status }}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-outline-primary btn-sm" (click)="addFeedback(m)">
+                        <i class="bi bi-chat-dots"></i> Feedback
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Feedback Modal -->
+<div *ngIf="feedForm" class="custom-modal-overlay">
+    <div class="custom-modal">
+        <div class="custom-modal-header">
+            <h5 class="modal-title" style="font-size: medium;">Add Feedback</h5>
+            <button class="btn-close" (click)="closeshowRejectModal()">❌</button>
+        </div>
+        <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="feedbackText">Provide feedback below:</label>
+                <textarea id="feedbackText" formControlName="feedbackText" class="form-control"
+                    placeholder="Enter Feedback"
+                    [ngClass]="{'is-invalid': feedbackForm.get('feedbackText')?.invalid && feedbackForm.get('feedbackText')?.touched}">
+                </textarea>
+                <div *ngIf="feedbackForm.get('feedbackText')?.invalid && feedbackForm.get('feedbackText')?.touched"
+                    class="invalid-feedback">
+                    *Feedback is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <div class="rating">
+                    <i class="bi" *ngFor="let star of stars; let i = index" 
+                       [ngClass]="{'bi-star': i >= rating, 'bi-star-fill': i < rating}" 
+                       (click)="setRating(i + 1)">
+                    </i>
+                </div>
+            </div>
+            <input id="rating" type="hidden" formControlName="rating">
+            <div *ngIf="feedbackForm.get('rating')?.invalid && feedbackForm.get('rating')?.touched"
+                class="invalid-feedback">
+                *Rating is required
+            </div>
+            <div class="form-group">
+                <label for="recommend">Are you Satisfied?</label>
+                <div class="thumbs">
+                    <i class="bi" 
+                       [ngClass]="{
+                           'bi-hand-thumbs-up': feedbackForm.get('recommend')?.value !== 'Satisfied', 
+                           'bi-hand-thumbs-up-fill text-success': feedbackForm.get('recommend')?.value === 'Satisfied'
+                       }"
+                       (click)="setRecommend('Satisfied')" style="font-size: 30px;" >
+                    </i>
+                    <i class="bi" 
+                       [ngClass]="{
+                           'bi-hand-thumbs-down': feedbackForm.get('recommend')?.value !== 'Not Satisfied', 
+                           'bi-hand-thumbs-down-fill text-danger': feedbackForm.get('recommend')?.value === 'Not Satisfied'
+                       }"
+                       (click)="setRecommend('Not Satisfied')" style="margin-left: 20px; font-size: 30px;">
+                    </i>
+                </div>
+                <input id="recommend" type="hidden" formControlName="recommend">
+                <div *ngIf="feedbackForm.get('recommend')?.invalid && feedbackForm.get('recommend')?.touched"
+                    class="invalid-feedback">
+                    *Choose whether to recommend or not
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <button class="btn btn-success" [disabled]="feedbackForm.invalid" type="submit">Submit</button>
+            </div>
+        </form>
+        <div *ngIf="showMessage" class="alert alert-success mt-3">
+            {{ successMessage }}
+        </div>
+        <div *ngIf="showError" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+        </div>
+    </div>
+</div>

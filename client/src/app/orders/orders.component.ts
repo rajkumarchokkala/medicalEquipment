@@ -99,7 +99,8 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit 
+{
   showError: boolean = false;
   errorMessage: any;
   showMessage: boolean = false;
@@ -150,15 +151,18 @@ export class OrdersComponent implements OnInit {
   }
 
   saveUpdate() {
-    if (this.statusModel.newStatus && this.selectedOrderId !== null) {
+    if (this.statusModel.newStatus && this.selectedOrderId !== null) 
+      {
       this.httpService.UpdateOrderStatus(this.statusModel.newStatus, this.selectedOrderId).subscribe(
-        (response: any) => {
+        (response: any) => 
+        {
           this.showMessage = true;
           this.successMessage = 'Order updated successfully!';
           this.getOrders();
           this.showModal = false;
           this.selectedOrderId = null;
-          setTimeout(() => {
+          setTimeout(() => 
+          {
             this.showMessage = false;
           }, 2000);
         },

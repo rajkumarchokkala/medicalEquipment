@@ -1,0 +1,211 @@
+/* Custom modal backdrop */
+.modal-content {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Badge styles for status */
+.badge-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Button Styling */
+.btn-outline-primary {
+    transition: 0.3s;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Table Enhancements */
+.table 
+{
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #63859b;
+    color: white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}
+/* Overlay background */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+/* Pop-up modal styling */
+.custom-modal {
+    background: white;
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal header */
+.custom-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Close button */
+.btn-close {
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+/* Styling for form elements */
+.custom-modal-body label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+textarea {
+    resize: none;
+    min-height: 80px;
+}
+
+/* Rating stars */
+.rating {
+    display: flex;
+    gap: 10px;
+}
+
+.rating i {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ddd;
+    transition: color 0.3s ease-in-out;
+}
+
+.rating i.active {
+    color: gold;
+}
+
+/* Like/Dislike buttons */
+.recommend-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.recommend-group input {
+    display: none;
+}
+
+.recommend-group label {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.recommend-group input:checked + label {
+    transform: scale(1.2);
+}
+
+.recommend-group label i {
+    transition: color 0.3s ease-in-out;
+}
+
+input#recommend[value="Satisfied"]:checked + label i {
+    color: green;
+}
+
+input#recommend[value="Not Satisfied"]:checked + label i {
+    color: red;
+}
+
+
+.thumbs i {
+    font-size: 24px;
+    cursor: pointer;
+    color: gray;
+    transition: color 0.3s;
+}
+
+/* Active state styles */
+.thumbs i.active {
+    color: green; /* Change to your desired color for thumbs up */
+    // background-color: green;
+}
+
+.thumbs i.active.thumbs-down {
+    color: red; /* Change to your desired color for thumbs down */
+    // background-color: red;
+}
+
+
+.text-success {
+    color: green;
+}
+
+.text-danger {
+    color: red;
+}
+
+
+.rating i {
+    cursor: pointer;
+    color: grey;
+  }
+  
+  .rating i.bi-star-fill {
+    color: gold;
+  }
+
+  .modal-title
+  {
+    font-size:medium;
+    
+  }
+
+  th{
+    background-color: #007bff;
+}

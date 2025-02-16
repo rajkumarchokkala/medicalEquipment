@@ -2,7 +2,7 @@
   <h1><i class="bi bi-graph-up"></i>&nbsp;Dashboard</h1>
   <p>Hey!&nbsp;{{username}}</p>
   <p style="font-family: 'Times New Roman', Times, serif; font-size: 24px; font-weight: bold;text-align: center;"
-    data-aos="zoom-in">Welcome To Equipcare , {{ username }}!</p>
+    data-aos="zoom-in">Welcome To Equipcare, {{ username }}!</p>
 </div>
 
 <section id="carouselSection" *ngIf="role !== 'HOSPITAL' && role !== 'TECHNICIAN' && role !== 'SUPPLIER'">
@@ -48,12 +48,12 @@
 <section *ngIf="role === 'HOSPITAL'" class="stats-box" style="overflow: hidden; min-height: 400px; max-height: 100vh;">
 
   <p style="font-family: 'Times New Roman', Times, serif; font-size: 24px; font-weight: bold;text-align: center;">Now
-    you can Create Hospital , Schedule Maintenance and Request Equipment </p>
+    you can Create Hospital, Schedule Maintenance and Request Equipment </p>
 
   <div class="stats-content">
     <div class="dashboard-statistic">
-      <h2 style="position: relative; bottom:10px;">Registered Hospitals</h2>
-      <sup class="stat-count">{{ hospitalCount }}<sub style="font-size: 10px;">Hospitals</sub></sup>
+      <h2 style="position: relative; bottom:10px; font-family:'Times New Roman', Times, serif;font-weight: bolder;">Registered Hospitals</h2>
+      <h1 class="stat-count">{{ hospitalCount }}</h1>
     </div>
     <div class="hospital-list">
       <div class="hospital-box" *ngFor="let i of hospitals">
@@ -74,7 +74,7 @@
 
 <section *ngIf="role === 'SUPPLIER'" class="stats-box">
   <p style="font-family: 'Times New Roman', Times, serif; font-size: 24px; font-weight: bold; text-align: center;">
-    You are authorized to maintain orders!!
+    You are authorized to Maintain Orders!!
   </p>
 
   <div class="stats-content">
@@ -87,27 +87,32 @@
         <div class="card-content">
           <h3>Order ID</h3>
           <p>{{a.id}}</p>
+          <h3>Hospital Name</h3>
+          <p>{{a.equipment.hospital.name}}</p>
           <h3>Equipment</h3>
           <p>{{a.equipment.name}}</p>
           <h3>Status</h3>
           <p>{{a.status}}</p>
         </div>
       </div>
+      <ng-container *ngFor="let item of feedbackList">
+        <ul *ngIf="item.order">
+          <li>{{item.hospital.name}}</li>
+          <li>{{item.feedbackText}}</li>
+          <li>{{item.rating}}</li>
+          <li>{{item.recommend}}</li>
+        </ul>
+      </ng-container>
     </ng-container>
 
     <ng-template #noOrders>
-      <div>
-        no pending orders
+      <div style="display: flex; justify-content: center;">
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-illustration-download-in-svg-png-gif-file-formats--no-records-list-record-emply-data-user-interface-pack-design-development-illustrations-6430781.png" alt="none">
+        <h1 style="color: rgb(150, 44, 44,0.4); position: relative; top: 200px;">Oops!! No Pending Orders</h1>
       </div>
     </ng-template>
   </div>
 </section>
-
-
-
-
-
-
 
 <section *ngIf="role === 'TECHNICIAN'" class="stats-box">
   <p style="font-family: 'Times New Roman', Times, serif; font-size: 24px; font-weight: bold; text-align: center;">
@@ -125,29 +130,27 @@
 
       <div *ngFor="let m of maintenanceList" class="maintenance-card">
         <div class="card-content">
+          <h3>Hospital Name</h3>
+          <p>{{m.equipment.hospital.name}}</p>
           <h3>Scheduled Date</h3>
           <p>{{m.scheduledDate}}</p>
           <h3>Completed Date</h3>
           <p>{{m.completedDate}}</p>
-          <h3>Description</h3>
-          <p>{{m.description}}</p>
           <h3>Status</h3>
           <p>{{m.status}}</p>
         </div>
       </div>
     </div>
   </div>
+  <ng-container *ngFor="let item of feedbackList">
+    <ul *ngIf="item.maintenance">
+      <li>{{item.hospital.name}}</li>
+      <li>{{item.feedbackText}}</li>
+      <li>{{item.rating}}</li>
+      <li>{{item.recommend}}</li>
+    </ul>
+  </ng-container>
 </section>
-
-
-
-
-
-
-
-
-
-
 
 <section id="services" *ngIf="role !== 'HOSPITAL' && role !== 'TECHNICIAN' && role !== 'SUPPLIER'" data-aos="fade-up">
   <h2>Our Services</h2>
@@ -156,7 +159,6 @@
       <img
         src="https://www.technology-innovators.com/wp-content/uploads/2023/05/Internet-of-Things-IoT-in-Logistics-Real-time-Tracking-and-Asset-Management-min.jpg"
         alt="Service 1">
-      <!-- <img src="/client/src/assets/images/Image1.jpg" alt=""> -->
       <p>Real-Time Equipment Tracking (IoT & GPS)</p>
     </div>
     <div class="service">

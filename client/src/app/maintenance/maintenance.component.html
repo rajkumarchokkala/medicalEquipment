@@ -1,33 +1,36 @@
 <div class="row justify-content-center mt-5">
-  <div class="col-md-10">
+  <div class="col-md-10" style="width: 100%;">
     <div class="card">
       <div class="card-header">
-        <h3>Maintenance List</h3>
+        <h3 style="font-size: x-large; font-family: 'Times New Roman', Times, serif;">Maintenance List</h3>
       </div>
       <div class="card-body">
         <table class="table table-striped">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Scheduled Date</th>
-              <th>Completed Date</th>
-              <th>Description</th>
-              <th>Status</th>
-              <th colspan="2">Action</th>
+              <th style="WIDTH: 150PX;text-align: center;">Hospital Details</th>
+              <th style="WIDTH: 150PX; text-align: center;">Scheduled Date</th>
+              <th style="WIDTH: 150PX; text-align: center;">Completed Date</th>
+              <th style="text-align: center;">Description</th>
+              <th style="text-align: center;">Status</th>
+              <th colspan="2" style="text-align: center;">Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let maintenance of maintenanceList">
               <td>{{ maintenance.id }}</td>
+              Name: {{ maintenance.equipment.hospital.name }}<br>
+              Location: {{ maintenance.equipment.hospital.location }}
               <td>{{ maintenance.scheduledDate }}</td>
               <td>{{ maintenance.completedDate }}</td>
               <td>{{ maintenance.description }}</td>
               <td>{{ maintenance.status }}</td>
               <td>
-                <button (click)="update(maintenance)" [disabled]="maintenance.status === 'Completed'" class="edit-button">Edit</button>
+                <button (click)="update(maintenance)" [disabled]="maintenance.status === 'Completed'" class="edit-button" style="background-color: rgba(33, 14, 138); color: white;">Edit</button>
               </td>
               <td>
-                <button (click)="deleteMaintenance(maintenance.id)" class="delete-button">Delete</button>
+                <button (click)="deleteMaintenance(maintenance.id)" class="delete-button" style="background-color: rgb(173, 53, 53) ;color: white;">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -36,19 +39,19 @@
     </div>
   </div>
 </div>
- 
+
 <div *ngIf="formModel" class="custom-modal-overlay">
   <h2 class="mt-5">Add Equipment</h2>
   <div class="custom-modal">
     <div class="custom-modal-header">
-      <h5 class="modal-title">Update Maintenance</h5>
+      <h5 class="modal-title" style="font-size: medium;">Update Maintenance</h5>
       <button class="btn-close" (click)="closeedit()">❌</button>
     </div>
     <div class="custom-modal-body">
       <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="scheduledDate">Scheduled Date</label>
-          <input type="text" id="scheduledDate" formControlName="scheduledDate"/>
+          <input type="text" id="scheduledDate" formControlName="scheduledDate" readonly style="background-color:rgb(219, 213, 213)"/>
           <div
             *ngIf="
             itemForm.get('scheduledDate')?.hasError('required') &&
@@ -69,7 +72,7 @@
           Policy StartDate must be in DD-MM-YYYY.
           </div>
         </div>
-   
+
         <div class="form-group">
           <label for="completedDate">Completed Date</label>
           <input type="text" id="completedDate" formControlName="completedDate" />
@@ -94,34 +97,35 @@
             </div>
           <div
             *ngIf="
-              itemForm.errors?.['dateRangeInvalid'] && itemForm.get('completedDate')?.touched && itemForm.get('completedDate')?.touched
+              itemForm.errors?.['dateRangeInvalid'] && itemForm.get('completedDate')?.touched
             "
             class="error"
            >
             End date must be greater than or equal to start date
           </div>
         </div>
-        
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" class="form-control" formControlName="description"></textarea>
-            <div *ngIf="itemForm.get('description')?.invalid && itemForm.get('description')?.touched" class="text-danger">
-              Description is required.
-            </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" class="form-control" formControlName="description" readonly  style="background-color:rgb(219, 213, 213)"></textarea>
+
+          <div *ngIf="itemForm.get('description')?.invalid && itemForm.get('description')?.touched" class="text-danger">
+            Description is required.
           </div>
-          <div class="form-group">
-            <label for="status">Status</label>
-            <select name="status" id="status" formControlName="status">
-              <option value="" disabled >Please Choose Status</option>
-              <option *ngFor="let i of status" [value]="i">{{i}}</option>
-            </select>
-            <div *ngIf="itemForm.get('status')?.touched && itemForm.get('status')?.invalid" class="invalid-feedback d-block">
-              Status is required.
-            </div>
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select name="status" id="status" formControlName="status">
+            <option value="" disabled >Please Choose Status</option>
+            <option *ngFor="let i of newStatus" [value]="i">{{i}}</option>
+          </select>
+          <div *ngIf="itemForm.get('status')?.touched && itemForm.get('status')?.invalid" class="invalid-feedback d-block">
+            Status is required.
           </div>
-          <div class="custom-modal-footer">
-            <button class="btn btn-success" type="submit">Submit</button>
-          </div>
+        </div>
+        <div class="custom-modal-footer">
+          <button class="btn btn-success" type="submit">Submit</button>
+        </div>
       </form>
       <div *ngIf="showMessage" class="alert alert-success mt-3">
         {{ successMessage }}
@@ -132,11 +136,11 @@
     </div>
   </div>
 </div>
- 
+
 <div *ngIf="showDelete" class="custom-modal-overlay">
   <div class="custom-modal">
     <div class="custom-modal-header">
-      <h5 class="modal-title">Confirm Delete</h5>
+      <h5 class="modal-title" style="font-size: medium;">Confirm Delete</h5>
       <button class="btn-close" (click)="closeDelete()">❌</button>
     </div>
     <div class="custom-modal-body">

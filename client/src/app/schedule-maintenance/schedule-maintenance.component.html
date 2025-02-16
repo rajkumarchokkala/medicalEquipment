@@ -60,7 +60,7 @@
           <label for="status">Status</label>
           <select id="status" class="form-control" formControlName="status">
             <option value="" disabled>Please Choose Status</option>
-            <option *ngFor="let s of newStatus" value="scheduled">scheduled</option>
+            <option *ngFor="let s of newStatus" [value]="s">{{s}}</option>
           </select>
           <div *ngIf="itemForm.get('status')?.touched && itemForm.get('status')?.invalid"
             class="invalid-feedback d-block">

@@ -369,7 +369,7 @@ body {
 .dashboard-statistic {
   text-align: center;
   padding: 20px;
-  background: #142195;
+  background: #2f3c8c;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%; /* Full width */
@@ -468,4 +468,38 @@ body {
 .card-content p {
   font-size: 16px;
   margin-bottom: 10px;
+}
+
+
+/* Container for the welcome message */
+.welcome-message {
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: zoomIn 0.5s ease-in-out;
+}
+
+/* Animation for zoom-in effect */
+@keyframes zoomIn {
+  from {
+      transform: scale(0.5);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .welcome-message {
+      font-size: 18px;
+      padding: 15px;
+  }
 }

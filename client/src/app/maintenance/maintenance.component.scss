@@ -161,3 +161,15 @@ input[type="date"], .form-control, select {
     padding: 6px 10px;
   }
 }
+
+
+.edit-button[disabled] {
+  background-color: #d3d3d3; /* Light grey color */
+  color: #a9a9a9; /* Dark grey color */
+  cursor: not-allowed; /* Change cursor to indicate it's disabled */
+}
+
+.delete-button {
+  background-color: rgb(38, 38, 121);
+  color: white;
+}

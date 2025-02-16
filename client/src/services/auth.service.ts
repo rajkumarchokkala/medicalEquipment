@@ -25,6 +25,18 @@ export class AuthService {
   {
     return localStorage.getItem('role');
   }
+
+
+  SetName(username:any)
+  {
+    localStorage.setItem('username',username);
+  }
+  get getName ():string|null
+  {
+    return localStorage.getItem('username');
+  }
+
+  
   // Method to retrieve login status
   get getLoginStatus(): boolean 
   {

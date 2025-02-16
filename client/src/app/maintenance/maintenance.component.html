@@ -19,15 +19,15 @@
           <tbody>
             <tr *ngFor="let maintenance of maintenanceList">
               <td>{{ maintenance.id }}</td>
-              <td>{{ maintenance.scheduledDate}}</td>
-              <td>{{ maintenance.completedDate}}</td>
+              <td>{{ maintenance.scheduledDate }}</td>
+              <td>{{ maintenance.completedDate }}</td>
               <td>{{ maintenance.description }}</td>
-              <td>{{ maintenance.status}}</td>
+              <td>{{ maintenance.status }}</td>
               <td>
-                <button (click)="update(maintenance)" style="background-color: rgb(38, 38, 121); color: white;">Edit</button>
+                <button (click)="update(maintenance)" [disabled]="maintenance.status === 'Completed'" class="edit-button">Edit</button>
               </td>
               <td>
-                <button (click)="deleteMaintenance(maintenance.id)" style="background-color: rgb(38, 38, 121); color: white;">Cancel</button>
+                <button (click)="deleteMaintenance(maintenance.id)" class="delete-button">Delete</button>
               </td>
             </tr>
           </tbody>

@@ -1,6 +1,5 @@
 package com.wecp.medicalequipmentandtrackingsystem.controller;
 
-
 import com.wecp.medicalequipmentandtrackingsystem.entitiy.Equipment;
 import com.wecp.medicalequipmentandtrackingsystem.entitiy.Hospital;
 import com.wecp.medicalequipmentandtrackingsystem.entitiy.Maintenance;
@@ -20,30 +19,29 @@ import java.util.List;
 @RequestMapping
 public class HospitalController {
 
-    @Autowired 
+    @Autowired
     private HospitalService hospitalService;
 
-    @Autowired 
+    @Autowired
     private EquipmentService equipmentService;
 
-    @Autowired 
+    @Autowired
     private MaintenanceService maintenanceService;
-    
-    @Autowired 
+
+    @Autowired
     private OrderService orderService;
 
     @PostMapping("/api/hospital/create")
-    public ResponseEntity<Hospital> createHospital(@RequestBody Hospital hospital) 
-    {
-        // create hospital and return the created hospital with status code 201 = CREATED;
+    public ResponseEntity<Hospital> createHospital(@RequestBody Hospital hospital) {
+        // create hospital and return the created hospital with status code 201 =
+        // CREATED;
         return ResponseEntity.status(201).body(hospitalService.createHospital(hospital));
     }
 
     @GetMapping("/api/hospitals")
-    public ResponseEntity<List<Hospital>> getAllHospitals() 
-    {
+    public ResponseEntity<List<Hospital>> getAllHospitals() {
         // return all hospitals with response code = 200 ok
-        List<Hospital> hospitals=hospitalService.getAllHospitals();
+        List<Hospital> hospitals = hospitalService.getAllHospitals();
         return ResponseEntity.status(200).body(hospitals);
     }
 
@@ -60,16 +58,16 @@ public class HospitalController {
     }
 
     @PostMapping("/api/hospital/maintenance/schedule")
-    public ResponseEntity<Maintenance> scheduleMaintenance(@RequestParam Long equipmentId, @RequestBody Maintenance maintenance) 
-    {
-        // schedule maintenance for the equipment and return the scheduled maintenance with status code 201 = CREATED;
-        return ResponseEntity.status(201).body(maintenanceService.scheduleMaintenance(equipmentId,maintenance));
+    public ResponseEntity<Maintenance> scheduleMaintenance(@RequestParam Long equipmentId,
+            @RequestBody Maintenance maintenance) {
+        // schedule maintenance for the equipment and return the scheduled maintenance
+        // with status code 201 = CREATED;
+        return ResponseEntity.status(201).body(maintenanceService.scheduleMaintenance(equipmentId, maintenance));
     }
 
     @PostMapping("/api/hospital/order")
-    public ResponseEntity<Order> placeOrder(@RequestParam Long equipmentId, @RequestBody Order order) 
-    {
+    public ResponseEntity<Order> placeOrder(@RequestParam Long equipmentId, @RequestBody Order order) {
         Order placedOrder = orderService.placeOrder(equipmentId, order);
-        return new ResponseEntity<>(placedOrder,HttpStatus.CREATED);
+        return new ResponseEntity<>(placedOrder, HttpStatus.CREATED);
     }
 }

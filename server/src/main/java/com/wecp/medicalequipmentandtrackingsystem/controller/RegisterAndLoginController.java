@@ -1,6 +1,5 @@
 package com.wecp.medicalequipmentandtrackingsystem.controller;
 
-
 import com.wecp.medicalequipmentandtrackingsystem.dto.LoginRequest;
 import com.wecp.medicalequipmentandtrackingsystem.dto.LoginResponse;
 import com.wecp.medicalequipmentandtrackingsystem.entitiy.User;
@@ -40,8 +39,7 @@ public class RegisterAndLoginController {
     public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
-            );
+                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         } catch (AuthenticationException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username or password", e);
         }

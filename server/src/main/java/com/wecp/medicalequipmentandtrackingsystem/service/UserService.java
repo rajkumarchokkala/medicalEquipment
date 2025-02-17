@@ -23,7 +23,8 @@ public class UserService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
 
-    public User registerUser(User user) {
+    public User registerUser(User user) 
+    {
         User newUser = userRepository.findByUsername(user.getUsername());
         if(newUser!=null)
         {

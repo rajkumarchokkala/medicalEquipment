@@ -42,9 +42,6 @@ export class DashbaordComponent implements OnInit {
     console.log(this.role);
     this.getHospital();
     this.getOrders();
-    // this.getMaintenance();
-    // this.onHospitalSelect(this.hospital); 
-
   }
   ngOnInit(): void 
   { 
@@ -54,8 +51,8 @@ export class DashbaordComponent implements OnInit {
     console.log(this.pendingMaintanance);
 
     Aos.init({
-      duration: 1200, // Animation duration
-      once: true, // Whether animation should happen only once
+      duration: 1200,
+      once: true,
     });
     this.username = localStorage.getItem('username');
     console.log(this.username)

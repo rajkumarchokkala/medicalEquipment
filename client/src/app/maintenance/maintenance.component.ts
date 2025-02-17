@@ -79,7 +79,9 @@ export class MaintenanceComponent implements OnInit
   {
     this.maintenanceList=this.service.getMaintenance().subscribe((data)=>
     {
-      this.maintenanceList=data;
+      this.maintenanceList=data.sort((a:any,b:any)=>{
+        return b.status.localeCompare(a.status);
+      });
     })
   }
 

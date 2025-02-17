@@ -7,9 +7,6 @@ import com.wecp.medicalequipmentandtrackingsystem.repository.EquipmentRepository
 import com.wecp.medicalequipmentandtrackingsystem.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityNotFoundException;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,8 +38,6 @@ public class OrderService
     {
         Equipment equipment=equipmentRepository.findById(equipmentId).orElse(null);
         order.setEquipment(equipment);
-        order.setOrderDate(new Date());
-        order.setStatus("Initiated");
         return orderRepository.save(order);
     }
 }

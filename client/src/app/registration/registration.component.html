@@ -1,67 +1,40 @@
 <div class="container mt-5 d-flex">
   <div class="left-side">
-    <img src="https://thumbs.dreamstime.com/b/medical-equipment-maintenance-technician-repair-broken-hospital-bed-vector-illustration-isolated-white-wearing-uniform-137193402.jpg" alt="Description" class="img-fluid">
+    <img
+      src="https://thumbs.dreamstime.com/b/medical-equipment-maintenance-technician-repair-broken-hospital-bed-vector-illustration-isolated-white-wearing-uniform-137193402.jpg"
+      alt="Description" class="img-fluid">
     <p class="text">Welcome to our Equipcare registration page! Please fill out the form to create an account.</p>
   </div>
   <div class="right-side">
     <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
-      <!-- <div class="form-group">
-        <label for="username">Username</label>
-        <input id="username" formControlName="username" type="text" class="form-control" placeholder="Enter username">
-        <div *ngIf="itemForm.get('username')?.invalid && itemForm.get('username')?.touched" class="text-danger">
-          <div *ngIf="itemForm.get('username')?.hasError('required')">Username is required.</div>
-          <div *ngIf="itemForm.get('username')?.hasError('pattern')">Username should only contain letters and numbers, and no spaces or special characters.</div>
-        </div>
-      </div> -->
-
-
       <div class="form-group">
         <label for="username">Username</label>
         <input id="username" formControlName="username" type="text" class="form-control" placeholder="Enter username">
         <div *ngIf="itemForm.get('username')?.invalid && itemForm.get('username')?.touched" class="text-danger">
           <div *ngIf="itemForm.get('username')?.hasError('required')">*Username is required.</div>
-          <div *ngIf="itemForm.get('username')?.hasError('pattern')">*Username shouldn't contain special characters and spaces</div>
+          <div *ngIf="itemForm.get('username')?.hasError('pattern')">*Username shouldn't contain special characters and
+            spaces</div>
         </div>
       </div>
-
-
-
-      <!-- <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password" class="form-control" placeholder="Enter password">
-        <div *ngIf="itemForm.get('password')?.invalid && itemForm.get('password')?.touched" class="text-danger">
-          Password is required (min 6 characters)
-        </div>
-        <div style="color: red;" *ngIf="itemForm.get('password')?.errors?.['pattern']">Password should contain a-zA-Z0-9 and special characters</div>
-      </div> -->
-
 
       <div class="form-group">
         <label for="password">Password</label>
         <input id="password" formControlName="password" type="password" class="form-control" placeholder="******">
-        <div *ngIf="itemForm.get('password')?.invalid && (itemForm.get('password')?.touched || itemForm.get('password')?.dirty)" class="text-danger">
+        <div
+          *ngIf="itemForm.get('password')?.invalid && (itemForm.get('password')?.touched || itemForm.get('password')?.dirty)"
+          class="text-danger">
           <div *ngIf="itemForm.get('password')?.errors?.['required']">*Password is required</div>
-          <div *ngIf="itemForm.get('password')?.errors?.['pattern']">*Password should contain atleast one uppercase, lowercase, numeric and special character.</div>
+          <div *ngIf="itemForm.get('password')?.errors?.['pattern']">*Password should contain atleast one uppercase,
+            lowercase, numeric and special character.</div>
         </div>
-        </div>
-
-
+      </div>
 
       <div class="form-group">
         <label for="email">Email</label>
         <input id="email" formControlName="email" type="email" class="form-control" placeholder="Enter email">
-        <div *ngIf="itemForm.get('email')?.invalid && itemForm.get('email')?.touched" class="text-danger">Valid email is required</div>
+        <div *ngIf="itemForm.get('email')?.invalid && itemForm.get('email')?.touched" class="text-danger">Valid email is
+          required</div>
       </div>
-
-
-      <!-- <div class="form-group">
-        <label for="role">Role</label>
-        <select id="role" formControlName="role" class="form-control">
-          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
-        </select>
-        <div *ngIf="itemForm.get('role')?.invalid && itemForm.get('role')?.touched" class="text-danger">Role is required</div>
-      </div> -->
-
 
       <div class="form-group">
         <label for="role">Role</label>
@@ -69,13 +42,12 @@
           <option value="" disabled>Select Role</option>
           <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
         </select>
-        <div *ngIf="itemForm.get('role')?.invalid && itemForm.get('role')?.touched" class="text-danger">*Role is required</div>
+        <div *ngIf="itemForm.get('role')?.invalid && itemForm.get('role')?.touched" class="text-danger">*Role is
+          required</div>
       </div>
 
-
-
-
-      <button style="margin: 10px;" type="submit" class="btn btn-primary mt-3" [disabled]="itemForm.invalid">Register</button>
+      <button style="margin: 10px;" type="submit" class="btn btn-primary mt-3"
+        [disabled]="itemForm.invalid">Register</button>
       <span>Already have an account? </span> <a style="text-decoration: none;" [routerLink]="['/login']">Login</a>
     </form>
   </div>

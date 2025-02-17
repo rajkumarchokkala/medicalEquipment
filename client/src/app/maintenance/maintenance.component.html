@@ -20,8 +20,9 @@
           <tbody>
             <tr *ngFor="let maintenance of maintenanceList">
               <td>{{ maintenance.id }}</td>
+              <td>
               Name: {{ maintenance.equipment.hospital.name }}<br>
-              Location: {{ maintenance.equipment.hospital.location }}
+              Location: {{ maintenance.equipment.hospital.location }}</td>
               <td>{{ maintenance.scheduledDate }}</td>
               <td>{{ maintenance.completedDate }}</td>
               <td>{{ maintenance.description }}</td>
@@ -41,7 +42,7 @@
 </div>
 
 <div *ngIf="formModel" class="custom-modal-overlay">
-  <h2 class="mt-5">Add Equipment</h2>
+  <h2 class="mt-5">Update Maintenance</h2>
   <div class="custom-modal">
     <div class="custom-modal-header">
       <h5 class="modal-title" style="font-size: medium;">Update Maintenance</h5>

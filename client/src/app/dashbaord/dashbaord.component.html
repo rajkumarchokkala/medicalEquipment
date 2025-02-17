@@ -77,32 +77,34 @@
     You are authorized to Maintain Orders!!
   </p>
 
-  <div class="stats-content">
+  <div class="stat-content">
     <div class="dashboard-statistic">
       <h2>Pending Orders</h2>
     </div>
 
     <ng-container *ngIf="pendingList.length > 0; else noOrders">
-      <div *ngFor="let a of pendingList" class="order-card">
-        <div class="card-content">
-          <h3>Order ID</h3>
-          <p>{{a.id}}</p>
-          <h3>Hospital Name</h3>
-          <p>{{a.equipment.hospital.name}}</p>
-          <h3>Equipment</h3>
-          <p>{{a.equipment.name}}</p>
-          <h3>Status</h3>
-          <p>{{a.status}}</p>
+      <div class="order-grid">
+        <div *ngFor="let a of pendingList" class="order-card">
+          <div class="card-content">
+            <div class="card-section">
+              <h3>Order ID</h3>
+              <p>{{a.id}}</p>
+            </div>
+            <div class="card-section">
+              <h3><i class="bi bi-hospital"></i>&nbsp;Hospital Name</h3>
+              <p>{{a.equipment.hospital.name}}</p>
+            </div>
+            <div class="card-section">
+              <h3><i class="bi bi-gear"></i>&nbsp;Equipment</h3>
+              <p>{{a.equipment.name}}</p>
+            </div>
+            <div class="card-section">
+              <h3><i class="bi bi-graph-up"></i>&nbsp;Status </h3>
+              <p>{{a.status}}</p>
+            </div>
+          </div>
         </div>
       </div>
-      <ng-container *ngFor="let item of feedbackList">
-        <ul *ngIf="item.order">
-          <li>{{item.hospital.name}}</li>
-          <li>{{item.feedbackText}}</li>
-          <li>{{item.rating}}</li>
-          <li>{{item.recommend}}</li>
-        </ul>
-      </ng-container>
     </ng-container>
 
     <ng-template #noOrders>
@@ -112,6 +114,29 @@
       </div>
     </ng-template>
   </div>
+</section>
+
+
+
+<div *ngIf="role === 'SUPPLIER'" class="stat-content">
+  <p class="dashboard-statistic" style="color: white; font-size: large;  font-family: 'Arial', sans-serif; padding: 30px; margin-top: 50px;">FEEDBACKS</p>
+</div>
+
+<section *ngIf="role === 'SUPPLIER'" class="feedback-box">
+ 
+  <ng-container *ngFor="let item of feedbackList">
+    <div *ngIf="item.order" class="feedback-card">
+      <div class="card-con">
+        <h3>{{item.hospital.name}}</h3>
+        <p>{{item.feedbackText}}</p>
+        <p class="rating">Rating: {{item.rating}}</p>
+        <p class="recommend">Recommend: {{item.recommend}}</p>
+      </div>
+      <div class="user-info">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoaTnj2VuwfHPqvefk025J8uVhz1UfYtYWug&s" alt="User Image">
+      </div>
+    </div>
+  </ng-container>
 </section>
 
 <section *ngIf="role === 'TECHNICIAN'" class="stats-box">
@@ -124,31 +149,50 @@
       <p class="stat-count">{{ maintenanceListCount }}</p>
     </div>
     <div class="maintenance-grid">
-
-
-
-
       <div *ngFor="let m of maintenanceList" class="maintenance-card">
         <div class="card-content">
-          <h3>Hospital Name</h3>
-          <p>{{m.equipment.hospital.name}}</p>
-          <h3>Scheduled Date</h3>
-          <p>{{m.scheduledDate}}</p>
-          <h3>Completed Date</h3>
-          <p>{{m.completedDate}}</p>
-          <h3>Status</h3>
-          <p>{{m.status}}</p>
+          <div class="card-section">
+            <h3><i class="bi bi-hospital"></i>&nbsp;Hospital Name</h3>
+            <p>{{m.equipment.hospital.name}}</p>
+          </div>
+          <div class="card-section">
+            <h3><i class="bi bi-calendar"></i>&nbsp;Scheduled Date></h3>
+            <p>{{m.scheduledDate}}</p>
+          </div>
+          <div class="card-section">
+            <h3><i class="bi bi-calendar"></i>&nbsp;Completed Date</h3>
+            <p>{{m.completedDate}}</p>
+          </div>
+          <div class="card-section">
+            <h3><i class="bi bi-graph-up"></i>&nbsp;Status</h3>
+            <p>{{m.status}}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</section>
+
+<div *ngIf="role === 'TECHNICIAN'" class="stat-content">
+  <p class="dashboard-statistic" style="color: white; font-size: large;  font-family: 'Arial', sans-serif; padding: 30px; margin-top: 50px;">FEEDBACKS</p>
+</div>
+
+
+<section *ngIf="role === 'TECHNICIAN'" class="feedback-box">
+     
   <ng-container *ngFor="let item of feedbackList">
-    <ul *ngIf="item.maintenance">
-      <li>{{item.hospital.name}}</li>
-      <li>{{item.feedbackText}}</li>
-      <li>{{item.rating}}</li>
-      <li>{{item.recommend}}</li>
-    </ul>
+    <div *ngIf="item.maintenance" class="feedback-card">
+      <div class="card-con">
+        <h3>{{item.hospital.name}}</h3>
+        <p>{{item.feedbackText}}</p>
+        <p class="rating">Rating: {{item.rating}}</p>
+        <p class="recommend">Recommend: {{item.recommend}}</p>
+      </div>
+      <div class="user-info">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoaTnj2VuwfHPqvefk025J8uVhz1UfYtYWug&s" alt="User Image">
+    
+      </div>
+    </div>
   </ng-container>
 </section>
 

@@ -41,15 +41,6 @@ public class FeedbackService {
         return feedbackRepository.findByTechnician(orderId);
     }
 
-   
-
-
-    // public List<Feedback> getFeedbacksBy(Long userId) 
-    // {
-    //     List<Feedback> exists = feedbackRepository.findByUser(userId);
-    //     return feedbackRepository.findByUser(userId);
-    // }
-
     public Feedback updateFeedback(Long feedbackId,Feedback feedback)
     {
         Feedback oldFeedback=feedbackRepository.findById(feedbackId).orElse(null);

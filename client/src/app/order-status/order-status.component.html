@@ -22,7 +22,7 @@
                     </span>
                 </td>
                 <td>
-                    <button class="btn btn-outline-primary btn-sm" (click)="addFeedback(m)">
+                    <button class="btn btn-outline-primary btn-sm" [disabled]="m.status !== 'Delivered'"  (click)="addFeedback(m)">
                         <i class="bi bi-chat-dots"></i> Feedback
                     </button>
                 </td>

@@ -1,52 +1,49 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-  
-  <a class="navbar-brand" href="#" style="letter-spacing: 0.05rem; font-family: 'Times New Roman', Times, serif;"><i class="bi bi-hospital"></i>&nbsp;EQUIPCARE</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+  <a class="navbar-brand" href="#" style="letter-spacing: 0.05rem; font-family: 'Times New Roman', Times, serif;"><i
+      class="bi bi-hospital"></i>&nbsp;EQUIPCARE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav" style="display: flex; justify-content: space-evenly;">
     <ul class="navbar-nav">
-      <!-- <li class="nav-item">
-        <a *ngIf="roleName === 'HOSPITAL'" class="nav-link" [routerLink]="['/dashboard']">Home</a>
-      </li> -->
       <li class="nav-item">
-        <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/createhospital']"><i class="bi bi-building"></i>&nbsp;Create</a>
+        <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/createhospital']"><i
+            class="bi bi-building"></i>&nbsp;Create</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/schedulemaintenance']"><i class="bi bi-calendar-plus"></i>&nbsp;Schedule</a>
+        <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/schedulemaintenance']"><i
+            class="bi bi-calendar-plus"></i>&nbsp;Schedule</a>
 
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/requestequipment']"><i class="bi bi-gear"></i>&nbsp;Request</a>
+        <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/requestequipment']"><i
+            class="bi bi-gear"></i>&nbsp;Request</a>
 
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/maintenance-status']">Maintenance Status</a>
-        </li>
-         
-              <li class="nav-item">
+        <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/maintenance-status']">Maintenance
+          Status</a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/order-status']">Order Status</a>
-        </li>
-      
-      <!-- <li class="nav-item">
-        <a *ngIf="roleName === 'TECHNICIAN'" class="nav-link" [routerLink]="['/dashboard']">Home</a>
-      </li> -->
+      </li>
+
       <li class="nav-item">
-        <a class="nav-link" *ngIf="roleName === 'TECHNICIAN'" [routerLink]="['/maintenance']"><i class="bi bi-wrench-adjustable"></i>&nbsp;Maintenance</a>
+        <a class="nav-link" *ngIf="roleName === 'TECHNICIAN'" [routerLink]="['/maintenance']"><i
+            class="bi bi-wrench-adjustable"></i>&nbsp;Maintenance</a>
 
       </li>
-     
 
-      <!-- <li class="nav-item">
-        <a class="nav-link" *ngIf="roleName === 'SUPPLIER'" [routerLink]="['/dashboard']">Home</a>
-      </li> -->
       <li class="nav-item">
-        <a class="nav-link" *ngIf="roleName === 'SUPPLIER'" [routerLink]="['/orders']"><i class="bi bi-cart-plus-fill"></i>&nbsp;Orders</a>
+        <a class="nav-link" *ngIf="roleName === 'SUPPLIER'" [routerLink]="['/orders']"><i
+            class="bi bi-cart-plus-fill"></i>&nbsp;Orders</a>
       </li>
     </ul>
- 
+
     <!-- Login/Logout buttons -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -59,7 +56,8 @@
         <a class="nav-link" [routerLink]="['/registration']"><i class="bi bi-person-vcard-fill"></i>&nbsp;Register</a>
       </li>
       <li *ngIf="IsLoggin" class="nav-item">
-        <a class="nav-link" (click)="logout()" [routerLink]="['/login']">Logout&nbsp;<i class="bi bi-box-arrow-right"></i></a>
+        <a class="nav-link" (click)="logout()" [routerLink]="['/login']">Logout&nbsp;<i
+            class="bi bi-box-arrow-right"></i></a>
       </li>
     </ul>
   </div>
@@ -67,10 +65,8 @@
 
 <body>
   <div class="container mt-4 mx-5">
-    <router-outlet>    
+    <router-outlet>
     </router-outlet>
-    <!-- <a routerLink="/createhospital">Create Hospital</a> || <a routerLink="/schedulemaintenance">Schedule-Maintenance</a> || <a routerLink="/maintenance">Maintenance</a> -->
   </div>
 
 </body>
-

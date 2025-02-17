@@ -10,16 +10,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent 
-{
-  itemForm!:FormGroup;
+export class RegistrationComponent {
+  itemForm!: FormGroup;
   durationInSeconds = 2;
   roles: string[] = ['HOSPITAL', 'TECHNICIAN', 'SUPPLIER'];
 
-  constructor(private fb: FormBuilder,private hs:HttpService,private router:Router,private snackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder, private hs: HttpService, private router: Router, private snackBar: MatSnackBar) {
     this.itemForm = this.fb.group({
-      username: ['', [Validators.required,Validators.pattern(/^[a-zA-Z0-9]*$/)]],
-      password: ['', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$')]],
+      username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]*$/)]],
+      password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$')]],
       email: ['', [Validators.required, Validators.email]],
       role: ['', Validators.required]
     });
@@ -27,7 +26,7 @@ export class RegistrationComponent
 
   onSubmit() {
     console.log("in on submit...");
-  
+
     if (this.itemForm.valid) {
       this.hs.registerUser(this.itemForm.value).subscribe(
         (data) => {
@@ -45,19 +44,17 @@ export class RegistrationComponent
             duration: this.durationInSeconds * 1000,
             verticalPosition: 'top',
             panelClass: ['custom-snackbar'],
-            
-           
           });
-          
+
         }
       );
     } else {
-     
+
       this.snackBar.open('Please fill the form correctly before submitting.', '', {
         duration: this.durationInSeconds * 1000,
         verticalPosition: 'top',
         panelClass: ['custom-snackbar']
-        
+
       });
     }
   }

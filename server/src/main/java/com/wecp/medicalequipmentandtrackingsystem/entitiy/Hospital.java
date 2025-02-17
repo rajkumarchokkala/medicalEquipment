@@ -1,6 +1,5 @@
 package com.wecp.medicalequipmentandtrackingsystem.entitiy;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -10,54 +9,49 @@ import java.util.List;
 @Table(name = "hospital") // do not change table name
 public class Hospital {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String name;
     private String location;
-    
-    @OneToMany(mappedBy="hospital")
+
+    @OneToMany(mappedBy = "hospital")
     @JsonIgnore
     private List<Equipment> equipmentList;
-    
-    public Hospital() {}
-    
-    public Long getId() 
-    {
+
+    public Hospital() {
+    }
+
+    public Long getId() {
         return id;
     }
-        
+
     public void setId(Long id) {
         this.id = id;
-        }
-        
+    }
+
     public String getName() {
         return name;
-        }
-        
-    public void setName(String name) 
-    {
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
-        
-    public String getLocation() 
-    {
+
+    public String getLocation() {
         return location;
     }
-        
+
     public void setLocation(String location) {
         this.location = location;
-        }
-        
+    }
+
     public List<Equipment> getEquipmentList() {
         return equipmentList;
-        }
-        
+    }
+
     public void setEquipmentList(List<Equipment> equipmentList) {
         this.equipmentList = equipmentList;
-        }
-
-
-
+    }
 
 }
